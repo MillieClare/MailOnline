@@ -1,10 +1,17 @@
 
-# Mail Online technical test
+# MailOnline technical test
 
-I used http-server to test my code, but opening index.html works fine also. I chose not to use any frameworks, so there isn't anything else to install. 
+![Completed task demonstration](images/function_demo.gif)
+
+## Usage
+Clone the repo, open index.html. Loads jquery from CDN but no other dependencies, so doesn't require a web server. 
+
+## Notes
+- Repeat requests are avoided by removing the onclick handler once the promise is resolved successfully. This may not be the best idea in real code, caching could be better.
+- Requires ES6 for for...of construct, should be fine in anything that isn't IE according to [browser compatibility list](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#Browser_compatibility)
 
 ## Testing
-I don't have much experience with automated testing. Instead I have done some manual tests to make sure that the main code functions as expected.
+I don't have much experience with automated testing, so instead performed some manual tests on the main functionality.
 
 ### List repositories from the 'nodejs' organisation by name
 
@@ -19,15 +26,15 @@ Actual:
 ```
 length: 30 
 ```
-This may be due to pagination, and the search only returns the first 30 repositories it finds. I'm unclear on how to check this, as the repositories are listed in order of most recently updated, and while the most recent repository in the list was updated within the past half hour, another hadn't been updated since Jan 2015. However, I have checked and all 30 repositories can be found by name.
+A quick check shows that the [github API uses pagination](https://developer.github.com/v3/guides/traversing-with-pagination/). Since showing all 150 repos in a list is probably a bad idea anyway, I just checked that all 30 repos shown exist in the org.
 
 ### When clicking on a repository, expand and make a request to get the open issues from that repository
 
-To test this I will manually check open issues for some of the repositories against what is returned.
+Manually check open issues for some of the repositories on github against results of my code.
 
 #### http-parser
 
-Expected:
+##### Expected:
 ```
 Is there any parser for mysql like http-parser?
 The http request can't be totally parsed
@@ -62,7 +69,7 @@ Forcing a pause at the end of HTTP headers
 
 
 ```
-Actual:
+##### Actual:
 ```
 Is there any parser for mysql like http-parser?
 The http request can't be totally parsed
@@ -97,7 +104,7 @@ Unbreak `make install` in BSDs
 ```
 #### roadmap
 
-Expected:
+##### Expected:
 ```
 Should Node.js be VM neutral in the future?
 Community polling program
@@ -115,7 +122,7 @@ Tools for engaging a larger portion of the community.
 What is your biggest pain point w/ Node?
 ```
 
-Actual:
+##### Actual:
 ```
 Should Node.js be VM neutral in the future?
 Community polling program
@@ -134,7 +141,7 @@ What is your biggest pain point w/ Node?
 ```
 #### docker-iojs
 
-Expected:
+##### Expected:
 ```
 Reduce Image Size - Alpine Linux, update apk question
 Automated tests of docker images testing
@@ -142,7 +149,7 @@ Consider alpine/busybox base image idea
 Security issue: iojs is run as root discussion
 ```
 
-Actual:
+##### Actual:
 ```
 Reduce Image Size - Alpine Linux, update apk
 Automated tests of docker images
@@ -152,38 +159,40 @@ Security issue: iojs is run as root
 ```
 #### build-container-sync
 
-Expected:
+##### Expected:
 ```
 remove semicolon :)
 ```
 
-Actual:
+##### Actual:
 ```
 remove semicolon :)
 ```
 
-The API is functioning as expected. In http-parser and docker-iojs where there are issues that the function found that aren't listed, these are found in the pull requests in the repo. This is because the API includes pull requests with issues, even if there are issues that aren't pull requests.
+From reading, the github API returns pull requests as well as issues. Paired with pagination, this means the lists won't match up, but looking at both issues and pull requests on the site gives equivalent results.
 
 ### Intermediate loading state 
 
-I'm not sure how to test for this. I can see it loading. Then it disappears after it has the information. 
+I'm not sure how to test formally for this. I can see it loading. Then it disappears after it has the information. 
 
 ### Handle errors while requesting the API by logging to the console
 
 The API works as expected while online. To test if the errors get logged to the console, I ran the function while not connected to the internet. I also expect this to happen if the Github site was down.
 
-Expected:
+#### Expected:
 ```
 Get list of repos failed
 ```
+logged to console.
 
-Actual:
+#### Actual:
 ```
 Get list of repos failed
 ```
+logged to console.
 
 The 'Loading...' also didn't change. 
 
 ### Only request issues once per repository
 
-To check that the request would only run once, I checked the Network tab under the Inspector (Google Chrome) to see what requests are being made. When each repository is clicked, it doesn't matter how many times it is clicked, the request only runs once for that repository.
+Checked the Network tab under the Inspector (Google Chrome) to see what requests are being made. When each repository is clicked, it doesn't matter how many times it is clicked, the request only runs once for that repository.
