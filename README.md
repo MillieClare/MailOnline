@@ -17,12 +17,12 @@ I don't have much experience with automated testing, so instead performed some m
 
 The nodejs organisation on Github has 151 repositories.
 
-Expected:
+##### Expected:
 ```
 length: 151
 ```
 
-Actual:
+##### Actual:
 ```
 length: 30 
 ```
@@ -179,13 +179,13 @@ I'm not sure how to test formally for this. I can see it loading. Then it disapp
 
 The API works as expected while online. To test if the errors get logged to the console, I ran the function while not connected to the internet. I also expect this to happen if the Github site was down.
 
-#### Expected:
+##### Expected:
 ```
 Get list of repos failed
 ```
 logged to console.
 
-#### Actual:
+##### Actual:
 ```
 Get list of repos failed
 ```
