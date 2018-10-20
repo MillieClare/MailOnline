@@ -4,7 +4,7 @@ function createRepositoriesList(repoList) {
     $(document.body).empty();
 
     let list = createList(repoList);
-    console.log(list);
+    
     $(document.body).append(list);
 }
 

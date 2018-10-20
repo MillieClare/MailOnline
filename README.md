@@ -17,6 +17,10 @@ I don't have much experience with automated testing, so instead performed some m
 
 Basic automated testing has been implemented in the script.js file. I attempted to extract this to a test.js file to be run in node, however node could not recognise jQuery and I couldn't run the test in that environment. Instead, I ran the test within script.js and logged the result to the console.
 
+#### Issues with test implementation
+- Original script.js file is polluted with test JavaScript. A solution to this would be to move tests to a seperate file and use node to test in terminal environment.
+- Refactor tests to use a testing framework would give more accurate information about the tests and why tests are failing. It will also add more structure to the tests, making the code and test output more readable.
+
 ### List repositories from the 'nodejs' organisation by name
 
 The nodejs organisation on Github has 151 repositories.
