@@ -30,15 +30,24 @@ function getIssues(repoName, htmlID) {
     xhr.fail(() => console.log('$.get on Issues failed'));
     xhr.done(function (issuesList) {
         $('#' + htmlID).children().remove();
-        let issuesListHTML = '<ul>';
+
+        let issues = getIssuesList(issuesList);
+        console.log(issues);
+
+        $('#' + htmlID).append(issues);
+        $('#' + htmlID).prop('onclick', null).off('click');
+    });
+}
+
+function getIssuesList(issuesList) {
+    let issuesListHTML = '<ul>';
         for (let issue of issuesList) {
             issuesListHTML += `<li>${issue.title}</li>`
         }
         issuesListHTML += '</ul>';
-        $('#' + htmlID).append(issuesListHTML);
-        $('#' + htmlID).prop('onclick', null).off('click');
-    });
+        return issuesListHTML;
 }
+
 $(document).ready(function () {
 
     let xhr = $.get(repositoryURL)
@@ -56,6 +65,12 @@ let testDataRepositories = [
     { name: 'Alex', id: '2'}
 ]
 
+let testDataIssues = [
+    { title: 'Super' },
+    { title: 'Awesome'  }
+]
 
+let expectedIssues = '<ul><li>Super</li><li>Awesome</li></ul>'
 let expectedRepositories = '<ul><li onclick=\'getIssues("Millie", 1)\' id=1>Millie</li><li onclick=\'getIssues("Alex", 2)\' id=2>Alex</li></ul>';
 console.log(createList(testDataRepositories) === expectedRepositories);
+console.log(getIssuesList(testDataIssues) === expectedIssues);
