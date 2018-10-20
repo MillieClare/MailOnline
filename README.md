@@ -20,6 +20,7 @@ Basic automated testing has been implemented in the script.js file. I attempted 
 #### Issues with test implementation
 - Original script.js file is polluted with test JavaScript. A solution to this would be to move tests to a seperate file and use node to test in terminal environment.
 - Refactor tests to use a testing framework would give more accurate information about the tests and why tests are failing. It will also add more structure to the tests, making the code and test output more readable.
+- Tests were written after the code. The code had to be refactored to work with tests, which made the testing process less efficient. The second test was written before the refactoring to simulate TDD.
 
 ### List repositories from the 'nodejs' organisation by name
 
