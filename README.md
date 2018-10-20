@@ -13,6 +13,10 @@ Clone the repo, open index.html. Loads jquery from CDN but no other dependencies
 ## Testing
 I don't have much experience with automated testing, so instead performed some manual tests on the main functionality.
 
+### Update (20/10/2018)
+
+Basic automated testing has been implemented in the script.js file. I attempted to extract this to a test.js file to be run in node, however node could not recognise jQuery and I couldn't run the test in that environment. Instead, I ran the test within script.js and logged the result to the console.
+
 ### List repositories from the 'nodejs' organisation by name
 
 The nodejs organisation on Github has 151 repositories.
